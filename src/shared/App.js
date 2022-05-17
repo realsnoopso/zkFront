@@ -12,45 +12,48 @@ import {
   PrivateNote,
   SecretClaim,
   WaitngClaim,
-} from "../pages/index";
+  FinishFail,
+} from "../pages";
 import { actionCreators as userActions } from "../redux/modules/user";
+import { actionCreators as nftActions } from "../redux/modules/nft";
 
-import { Header, Card } from "../components/index";
+import { ethers } from "ethers";
+
+import { Header, Card } from "../comps";
 
 import { useDispatch, useSelector } from "react-redux";
 
 function App() {
+  const { ethereum } = window;
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector((state) => state.user.is_login);
+  const isLoggedIn = useSelector((state) => state.user.selectedAddress);
 
   React.useEffect(() => {
     dispatch(userActions.loginCheckDB());
+    console.log("etheron");
+    ethereum.on("accountsChanged", (newAddress) => {
+      console.log("hi");
+      if (newAddress === undefined) {
+        return dispatch(userActions.selectedAddress(undefined));
+      }
+
+      dispatch(userActions.selectedAddress(newAddress));
+    });
   }, []);
 
   return (
     <React.Fragment>
       <ConnectedRouter history={history}>
-        {isLoggedIn ? (
-          <>
-            <Header connected />
-          </>
-        ) : (
+        {!isLoggedIn ? (
           <>
             <Header />
           </>
-        )}
-
-        {isLoggedIn ? (
-          <>
-            <Route path="/" exact component={AfterConnect} />
-            <Route path="/1" exact component={CheckingReward} />
-            <Route path="/2" exact component={AfterConnect} />
-            <Route path="/3" exact component={PrivateNote} />
-            <Route path="/4" exact component={SecretClaim} />
-            <Route path="/5" exact component={WaitngClaim} />
-            <Route path="/6" exact component={Finish} />
-          </>
         ) : (
+          <>
+            <Header connected />
+          </>
+        )}
+        {!isLoggedIn ? (
           <>
             <Route path="/" exact component={Home} />
             <Route path="/1" exact component={Home} />
@@ -59,6 +62,18 @@ function App() {
             <Route path="/4" exact component={Home} />
             <Route path="/5" exact component={Home} />
             <Route path="/6" exact component={Home} />
+            <Route path="/fail" exact component={Home} />
+          </>
+        ) : (
+          <>
+            <Route path="/" exact component={AfterConnect} />
+            <Route path="/1" exact component={CheckingReward} />
+            <Route path="/2" exact component={AfterConnect} />
+            <Route path="/3" exact component={PrivateNote} />
+            <Route path="/4" exact component={SecretClaim} />
+            <Route path="/5" exact component={WaitngClaim} />
+            <Route path="/6" exact component={Finish} />
+            <Route path="/fail" exact component={FinishFail} />
           </>
         )}
       </ConnectedRouter>

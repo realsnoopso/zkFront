@@ -4,13 +4,20 @@ import { Text } from "./index";
 import { Colors } from "./Colors";
 
 const RadioButton = (props) => {
-  const { id, label, caption, name, children, margin, checked } = props;
+  const { id, label, caption, name, children, margin, checked, disabled } =
+    props;
 
   const styles = { margin, checked };
 
   return (
     <RadioButtonWrap {...styles}>
-      <RadioButtonContainer {...styles} id={id} name={name} type="radio" />
+      <RadioButtonContainer
+        {...styles}
+        id={id}
+        name={name}
+        disabled={disabled}
+        type="radio"
+      />
       <RidioButtonLabel
         {...styles}
         checked={checked}
@@ -36,10 +43,12 @@ const RadioButton = (props) => {
 export default RadioButton;
 
 const RadioButtonWrap = styled.div`
-  width: 100%
+  width: 100%;
   height: fit-content;
   margin: ${(props) => props.margin};
-
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 const RidioButtonLabel = styled.label`

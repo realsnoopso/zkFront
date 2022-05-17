@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Children } from "react";
 import { ethers } from "ethers";
-import { Header, Card, ButtonWrap } from "../components/index";
+import { Header, Card, ButtonWrap } from "../comps/index";
 import {
   Input,
   Textarea,
@@ -20,11 +20,10 @@ function Home() {
     Balance: null,
   });
 
-  const [isLoading, setIsLoading] = useState(false);
+  const isLoading = useSelector((state) => state.user.isLoading);
   const dispatch = useDispatch();
 
   const RightClick = () => {
-    setIsLoading(true);
     dispatch(userActions.loginDB());
   };
   return (

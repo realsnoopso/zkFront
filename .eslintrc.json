@@ -1,0 +1,17 @@
+{
+  "extends": "next/core-web-vitals",
+  "env": {
+    "es2020": true, // <- activate “es2020” globals
+    "browser": true,
+    "node": true,
+    "mocha": true
+  },
+  "rules": {
+    "react/display-name": 0,
+    "react/no-unescaped-entities": 0,
+    "react/prop-types": 0,
+    "no-undef": 0,
+    "no-console": 1,
+    "no-unused-vars": 1
+  }
+}

@@ -4,11 +4,10 @@ import { generateMerkleProof, Semaphore } from "@zk-kit/protocols";
 import { providers, ethers } from "ethers";
 import Head from "next/head";
 import React from "react";
-import styles from "../styles/Home.module.css";
 import createIdentityCommitments from "./identity-test";
 
 const sign = async () => {
-  //   setLogs("Creating your Semaphore identity...");
+  console.log("Creating your Semaphore identity...");
 
   const provider: any = await detectEthereumProvider();
 
@@ -18,13 +17,16 @@ const sign = async () => {
   const signer = ethersProvider.getSigner();
   const address = await signer.getAddress();
   const message = await signer.signMessage(address);
-
-  console.log("MESSAGE", message);
+  console.log("ethersProvider:" + ethersProvider);
+  console.log("signer:" + signer);
+  console.log("address:" + address);
+  console.log("message:" + message);
 
   const identity = new ZkIdentity(Strategy.MESSAGE, message);
   const identityCommitment = identity.genIdentityCommitment();
   console.log(">>>>>>>>>>>>>>>>>>> ", identityCommitment);
   const identityCommitments = createIdentityCommitments();
+  console.log("identityCommitments:" + identityCommitments);
 
   const merkleProof = generateMerkleProof(
     20,

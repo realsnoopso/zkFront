@@ -12,6 +12,7 @@ import {
 import { WaitingCreatingProof } from "./index";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as nftActions } from "../redux/modules/nft";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 function AfterConnect(props) {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ function AfterConnect(props) {
 
   const _provider = useSelector((state) => state.user.provider);
   function onClickRight() {
-    dispatch(nftActions._handleProve(_provider));
+    dispatch(userActions.signDB());
   }
 
   return (

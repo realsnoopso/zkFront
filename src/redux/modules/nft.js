@@ -1,9 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 
-import { getInput } from "../../helpers/GetInput";
-import calculateProof from "../../helpers/ProofHelper";
-import buildContractCallArgs from "../../helpers/ProofHelper2";
 import { useSelector } from "react-redux";
 
 const { ethereum } = window;

@@ -30,13 +30,11 @@ function App() {
 
   React.useEffect(() => {
     dispatch(userActions.loginCheckDB());
-    console.log("etheron");
     ethereum.on("accountsChanged", (newAddress) => {
       console.log("hi");
       if (newAddress === undefined) {
         return dispatch(userActions.selectedAddress(undefined));
       }
-
       dispatch(userActions.selectedAddress(newAddress));
     });
   }, []);
@@ -47,25 +45,11 @@ function App() {
         {!isLoggedIn ? (
           <>
             <Header />
+            <Route path="*" exact component={Home} />
           </>
         ) : (
           <>
             <Header connected />
-          </>
-        )}
-        {!isLoggedIn ? (
-          <>
-            <Route path="/" exact component={Home} />
-            <Route path="/1" exact component={Home} />
-            <Route path="/2" exact component={Home} />
-            <Route path="/3" exact component={Home} />
-            <Route path="/4" exact component={Home} />
-            <Route path="/5" exact component={Home} />
-            <Route path="/6" exact component={Home} />
-            <Route path="/fail" exact component={Home} />
-          </>
-        ) : (
-          <>
             <Route path="/" exact component={AfterConnect} />
             <Route path="/1" exact component={CheckingReward} />
             <Route path="/2" exact component={AfterConnect} />

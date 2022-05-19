@@ -2,15 +2,8 @@ const { Strategy, ZkIdentity } = require("@zk-kit/identity");
 const { IncrementalMerkleTree } = require("@zk-kit/incremental-merkle-tree");
 const { poseidon } = require("circomlibjs");
 
-const accounts = [
-  "0x0f75f25eb9bc68c8886d6d4828966c58aac3c232",
-  "0x8459c6bebe2d53b4dcaa71499a1ae4274c0e4df9",
-  "0x509c39f7a55666fdc2ac90b085b39b41d0f089a0",
-  "0xc415040996590a6eb82ebb2b323b3fae84268e5d",
-  "0xdcaf829700b68df3ddde26f27313b8328debd9cb",
-];
-
 const message = [
+  "0x1b234b55add702bb131078d0c05264eece07f1be4b8cff7d77cc13b4fadd1fe710d132ee5bc908af55102d883cc0789b98b089ee5fafb7b6eab1f01eb120af2d1b",
   "0x222e98bb0d6d204b495c35011bb7c89e0ee7d69dbd35a510e82cb79e4587fa9d46010ef245eae0ecec067efdc7237ff63f1bfe4cedd55decc03c32ac71c6c5041b",
   "0x03eaffa1df9c17e39ace4c47f5e1be19115e5a79941e8db8c14b5a2ef8a4eea66c24e2cef6234ac58e4f49226fddf849a37e385aafdde748acc3d50e2179b5711b",
   "0x4b540b79f3178e8eae3da55eabe05c65c28299b723aabca35d6ff8e6b2a492d37ef4cd06ae1e6573819ffa5f1ab85dee6547b9c21ce49b3cf99401d6b709fcb31c",

@@ -4,6 +4,7 @@ import { ethers, Wallet } from "ethers";
 
 import AttestationMinterArtifact from "../../contracts/AttestationMinter.json";
 import contractAddress from "../../contracts/contract-address.json";
+import { sign } from "./sign.tsx";
 
 const { ethereum } = window;
 
@@ -34,6 +35,7 @@ const HARDHAT_NETWORK_ID = "31337";
 const GOERLI_NETWORK_ID = "5";
 const POLYGON_NETWORK_ID = "137";
 const ERROR_CODE_TX_REJECTED_BY_USER = 4001;
+const KOVAN_NETWORK_ID = "42";
 
 // initialState
 const initialState = {
@@ -51,7 +53,7 @@ const initialState = {
 
 // middleware actions
 const _checkNetwork = () => {
-  if (ethereum.networkVersion === POLYGON_NETWORK_ID) {
+  if (ethereum.networkVersion === KOVAN_NETWORK_ID) {
     console.log("true");
     return true;
   }
@@ -77,7 +79,7 @@ const _intializeEthers = () => {
 const loginDB = () => {
   return async function (dispatch, getState, { history }) {
     if (_checkNetwork() === false) {
-      alert("Please connect Metamask to Polygon");
+      alert("Please connect Metamask to Kovan Network");
       return;
     }
 
@@ -92,13 +94,19 @@ const loginDB = () => {
   };
 };
 
+const signDB = () => {
+  return async function (dispatch, getState, { history }) {
+    await sign();
+  };
+};
+
 const loginCheckDB = () => {
   _intializeEthers();
   return async function (dispatch, getState, { history }) {
     const network = await ethereum.request({ method: "net_version" });
     console.log(network);
 
-    if (Number(network) === 137) {
+    if (Number(network) === KOVAN_NETWORK_ID) {
       const accounts = await ethereum.request({
         method: "eth_accounts",
       });
@@ -148,6 +156,6 @@ export default handleActions(
 );
 
 // action creator export
-const actionCreators = { loginDB, loginCheckDB, selectedAddress };
+const actionCreators = { loginDB, loginCheckDB, signDB };
 
 export { actionCreators };

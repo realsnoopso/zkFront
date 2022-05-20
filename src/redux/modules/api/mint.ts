@@ -1,5 +1,5 @@
 import AttestationMinter from "../../../artifacts/contracts/AttestationMinter/AttestationMinter.json";
-import { Contract, providers, utils, Wallet } from "ethers";
+import { ethers, Contract, providers, utils, Wallet } from "ethers";
 import type { NextApiRequest, NextApiResponse } from "next";
 const JSONbigNative = require("json-bigint")({ useNativeBigInt: true });
 import Cors from "cors";
@@ -37,13 +37,16 @@ export default async function handler(
   const nullifierHash = body.nullifierHash.toString();
   const solidityProof = body.solidityProof;
 
+  const { ethereum } = window;
   // const contractAddress = "0x556F664A59bFB2e432fA9fd5800752bC59116e58" // mumbai testnet
   const contractAddress = "0x0e49820ceed405f6560d724333b45586c49e6fb1"; // kovan testnet
   const contract = new Contract(contractAddress, AttestationMinter.abi);
-  const provider = new providers.JsonRpcProvider(
-    "https://ethereum-kovan-rpc.allthatnode.com/fV1yQSJuIz74RU8lfhew7xJKndczum36"
-  );
-  const signer = new Wallet(`${process.env.PRIVATE_KEY_MINTER}`, provider);
+  const provider = new ethers.providers.Web3Provider(ethereum as any);
+  const signer = provider.getSigner();
+  // const provider = new providers.JsonRpcProvider(
+  //   "https://ethereum-kovan-rpc.allthatnode.com/fV1yQSJuIz74RU8lfhew7xJKndczum36"
+  // );
+  // const signer = new Wallet(`${process.env.PRIVATE_KEY_MINTER}`, provider);
   const contractOwner = contract.connect(signer);
   let txHash;
 

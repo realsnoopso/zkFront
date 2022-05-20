@@ -26,15 +26,18 @@ async function mint(
   // const correctMinter = body.correctMinter;
   // const nullifierHash = body.nullifierHash.toString();
   // const solidityProof = body.solidityProof;
+  const { ethereum } = window;
 
   // const contractAddress = "0x556F664A59bFB2e432fA9fd5800752bC59116e58" // mumbai testnet
   const contractAddress = "0x0e49820ceed405f6560d724333b45586c49e6fb1"; // kovan testnet
+
+  const provider = new ethers.providers.Web3Provider(ethereum as any);
   const contract = new Contract(contractAddress, AttestationMinter.abi);
-  const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
-  const signer = new Wallet(`${process.env.PRIVATE_KEY_MINTER}`, provider);
+  const signer = provider.getSigner();
+  // const signer = new Wallet(`${process.env.PRIVATE_KEY_MINTER}`, provider);
   const contractOwner = contract.connect(signer);
   let txHash;
-
+  console.log("---start");
   try {
     let tx = await contractOwner.mint(
       correctMinter,

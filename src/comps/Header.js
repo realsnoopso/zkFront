@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { Button, Link, Text } from "../elements";
 import { useDispatch, useSelector } from "react-redux";
-const { ethereum } = window;
 
 const Header = (props) => {
   const { connected, address } = props;

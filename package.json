@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@metamask/detect-provider": "^1.2.0",
+    "@metamask/providers": "^8.1.1",
     "@nomiclabs/hardhat-etherscan": "^3.0.3",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -12,15 +13,18 @@
     "@zk-kit/protocols": "^1.11.0",
     "assert": "^2.0.0",
     "connected-react-router": "^6.8.0",
+    "cors": "^2.8.5",
     "eslint": "7",
     "eslint-config-next": "^12.1.6",
-    "ethers": "^5.6.4",
+    "ethers": "^4.0.27",
     "events": "^3.3.0",
     "firebase": "^8.2.10",
     "history": "^4.10.1",
+    "https-browserify": "^1.0.0",
     "immer": "^8.0.1",
     "json-bigint": "^1.0.0",
     "next": "12.0.10",
+    "next-build": "^0.0.1",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-redux": "^7.2.2",
@@ -30,6 +34,7 @@
     "redux-actions": "^2.6.5",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
+    "stream-http": "^3.2.0",
     "string_decoder": "^1.3.0",
     "styled-components": "^5.2.1",
     "typescript": "^4.6.4",
@@ -39,7 +44,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "next-start": "next start -p 3000",
+    "next-build": "next build"
   },
   "browserslist": {
     "production": [
@@ -53,5 +60,13 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/cors": "^2.8.12",
+    "@types/react": "^18.0.1"
+  },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+  }
 }

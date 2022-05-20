@@ -17,9 +17,10 @@ function PrivateNote() {
   const is_loading = useSelector((state) => state.user.selectedAddress);
 
   const proofs = JSON.parse(window.localStorage.getItem("proofs"));
-  const proof = JSON.stringify(proofs[proofs.length - 1]);
+  const proof = JSON.stringify(proofs);
+
   React.useEffect(() => {
-    console.log(JSON.stringify(proofs[proofs.length - 1]));
+    console.log(JSON.stringify(proofs));
   }, []);
 
   function onClickRight() {
@@ -44,7 +45,7 @@ function PrivateNote() {
         darkforest developers.
       </Text>
       <Spacing size="20px" />
-      <Textarea value={proof} height="20rem" />
+      <Textarea value={proof} height="24rem" />
       <Spacing size="20px" />
       <ButtonWrap
         onClickLeft={onClickLeft}

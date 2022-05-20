@@ -18,9 +18,20 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "alwaysStrict": true,
+    "noUnusedLocals": false,
+    "baseUrl": ".",
+    "typeRoots": [
+      "node_modules/@types",
+      "types"
+    ],
+    "incremental": true
   },
   "include": [
     "src"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }

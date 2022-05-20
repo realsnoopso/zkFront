@@ -3,7 +3,7 @@ import { produce } from "immer";
 
 import { useSelector } from "react-redux";
 
-const { ethereum } = window;
+import { mint } from "./mint.tsx";
 
 // actions
 const GET_PROOF = "GET_PROOF";
@@ -51,6 +51,17 @@ const _handleProve = (_provider) => {
   };
 };
 
+const mintDB = () => {
+  return async function (dispatch, getState, { history }) {
+    const proofs = JSON.parse(window.localStorage.getItem("proofs"));
+    await mint(
+      proofs.correctMinter,
+      proofs.nullifierHash,
+      proofs.solidityProof
+    );
+  };
+};
+
 const _handleVerify = (account, proof, minter) => {
   return async function (dispatch, getState, { history }) {
     dispatch(isLoading(true));
@@ -90,6 +101,6 @@ export default handleActions(
 );
 
 // action creator export
-const actionCreators = { _handleProve, getProof, _handleVerify };
+const actionCreators = { _handleProve, getProof, _handleVerify, mintDB };
 
 export { actionCreators };

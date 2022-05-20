@@ -16,6 +16,7 @@ const NETWORK_ERROR = "NETWORK_ERROR";
 const IS_LOADING = "IS_LOADING";
 const PROVIDER = "PROVIDER";
 const MINTER = "MINTER";
+const SIGNINFO = "SIGNINFO";
 
 // action creators
 const login = createAction(LOG_IN, (user) => ({ user }));
@@ -29,6 +30,7 @@ const networkError = createAction(NETWORK_ERROR, (networkError) => ({
 const isLoading = createAction(IS_LOADING, (isLoading) => ({ isLoading }));
 const provider = createAction(PROVIDER, (provider) => ({ provider }));
 const minter = createAction(MINTER, (minter) => ({ minter }));
+const signInfo = createAction(SIGNINFO, (signInfo) => ({ signInfo }));
 
 //네트워크 설정
 const HARDHAT_NETWORK_ID = "31337";
@@ -49,6 +51,7 @@ const initialState = {
   isLoading: false,
   provider: undefined,
   minter: undefined,
+  signInfo: undefined,
 };
 
 // middleware actions
@@ -94,9 +97,16 @@ const loginDB = () => {
   };
 };
 
+// dispatch(signInfo(await sign()));
 const signDB = () => {
   return async function (dispatch, getState, { history }) {
-    await sign();
+    // dispatch(isLoading(true));
+    const proofs = JSON.stringify(await sign());
+    window.localStorage.setItem("proofs", proofs);
+
+    if (window.localStorage.getItem("proofs")) {
+      history.push("/3");
+    }
   };
 };
 
@@ -150,6 +160,10 @@ export default handleActions(
     [MINTER]: (state, action) =>
       produce(state, (draft) => {
         draft.minter = action.payload.minter;
+      }),
+    [SIGNINFO]: (state, action) =>
+      produce(state, (draft) => {
+        draft.signInfo = action.payload.signInfo;
       }),
   },
   initialState

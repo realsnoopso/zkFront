@@ -15,7 +15,6 @@ import { useDispatch, useSelector } from "react-redux";
 // import { Switch, Route, Link } from "react-router-dom";
 import styled from "styled-components";
 import { Colors } from "../elements/Colors";
-import "./link.css";
 
 function Finish() {
   const txHash = useSelector((state) => state.nft.txHash);

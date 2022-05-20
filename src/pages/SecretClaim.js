@@ -54,23 +54,24 @@ function SecretClaim() {
     }
   };
   function onClickRight() {
-    console.log(checkInput());
-    if (checkInput() === false) {
-      console.log("Fill the blank");
-      alert("Fill the blank!");
-      return;
-    }
-    if (checkAddress() === false) {
-      alert("Recheck the field");
-      return;
-    }
+    // console.log(checkInput());
+    // if (checkInput() === false) {
+    //   console.log("Fill the blank");
+    //   alert("Fill the blank!");
+    //   return;
+    // }
+    // if (checkAddress() === false) {
+    //   alert("Recheck the field");
+    //   return;
+    // }
     console.log(proofs.length);
     dispatch(
-      nftActions._handleVerify(
-        addressInputValue.current.value,
-        JSON.parse(privateNoteInputValue.current.value),
-        minter
-      )
+      nftActions
+        .mintDB
+        // addressInputValue.current.value,
+        // JSON.parse(privateNoteInputValue.current.value),
+        // minter
+        ()
     );
   }
   function onClickLeft() {
@@ -89,13 +90,13 @@ function SecretClaim() {
           <Textarea
             placeholder="Enter a private note..."
             _ref={privateNoteInputValue}
-            height="20rem"
+            height="24rem"
           />
-          <Spacing size="20px" />
+          {/* <Spacing size="20px" />
           <Input
             placeholder="Type an ethereum recipient address..."
             _ref={addressInputValue}
-          />
+          /> */}
           <Spacing size="20px" />
           <ButtonWrap
             onClickLeft={onClickLeft}

@@ -52,19 +52,16 @@ const sign = async () => {
 
   const { proof, publicSignals } = await Semaphore.genProof(
     witness,
-    "./semaphore.wasm",
-    "./semaphore_final.zkey"
+    process.env.PUBLIC_URL + "semaphore.wasm",
+    process.env.PUBLIC_URL + "semaphore_final.zkey"
   );
   const solidityProof = Semaphore.packToSolidityProof(proof);
 
-  console.log(
-    "correctMinter: ",
-    correctMinter,
-    "nullifierHash: ",
-    publicSignals.nullifierHash,
-    "solidityProof: ",
-    solidityProof
-  );
+  return {
+    correctMinter: correctMinter,
+    nullifierHash: publicSignals.nullifierHash,
+    solidityProof: solidityProof,
+  };
 
   //   setLogs("Created your Semaphore proof. Check your console.");
 };

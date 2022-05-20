@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn add ethers^4.0.27
+  /usr/local/bin/node /usr/local/bin/yarn add README.md next-env.d.ts next.config.js node_modules package-lock.json package.json public src tsconfig.json yarn-error.log yarn.lock
 
 PATH: 
   /opt/homebrew/bin:/Library/Frameworks/Python.framework/Versions/3.8/bin:/Library/Frameworks/Python.framework/Versions/3.10/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/homebrew/bin:/Library/Frameworks/Python.framework/Versions/3.8/bin:/Library/Frameworks/Python.framework/Versions/3.10/bin
@@ -14,7 +14,7 @@ Platform:
   darwin arm64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/ethers%5E4.0.27: Not found
+  Error: https://registry.yarnpkg.com/README.md: Not found
       at Request.params.callback [as _callback] (/usr/local/lib/node_modules/yarn/lib/cli.js:67029:18)
       at Request.self.callback (/usr/local/lib/node_modules/yarn/lib/cli.js:140883:22)
       at Request.emit (node:events:390:28)
@@ -45,6 +45,7 @@ npm manifest:
       "cors": "^2.8.5",
       "eslint": "7",
       "eslint-config-next": "^12.1.6",
+      "ethers": "^4.0.27",
       "events": "^3.3.0",
       "firebase": "^8.2.10",
       "history": "^4.10.1",
@@ -3198,6 +3199,11 @@ Lockfile:
       loader-utils "^2.0.0"
       regex-parser "^2.2.11"
   
+  aes-js@3.0.0:
+    version "3.0.0"
+    resolved "https://registry.yarnpkg.com/aes-js/-/aes-js-3.0.0.tgz#e21df10ad6c2053295bcbb8dab40b09dbea87e4d"
+    integrity sha512-H7wUZRn8WpTq9jocdxQ2c8x2sKo9ZVmzfRE13GiNJXfp7NcKYEdvl3vspKjXox6RIG2VtaRe4JFvxG4rqp2Zuw==
+  
   agent-base@6:
     version "6.0.2"
     resolved "https://registry.npmjs.org/agent-base/-/agent-base-6.0.2.tgz"
@@ -6188,6 +6194,21 @@ Lockfile:
       ethereum-cryptography "^0.1.3"
       rlp "^2.2.4"
   
+  ethers@^4.0.27:
+    version "4.0.49"
+    resolved "https://registry.yarnpkg.com/ethers/-/ethers-4.0.49.tgz#0eb0e9161a0c8b4761be547396bbe2fb121a8894"
+    integrity sha512-kPltTvWiyu+OktYy1IStSO16i2e7cS9D9OxZ81q2UUaiNPVrm/RTcbxamCXF9VUSKzJIdJV68EAIhTEVBalRWg==
+    dependencies:
+      aes-js "3.0.0"
+      bn.js "^4.11.9"
+      elliptic "6.5.4"
+      hash.js "1.1.3"
+      js-sha3 "0.5.7"
+      scrypt-js "2.0.4"
+      setimmediate "1.0.4"
+      uuid "2.0.1"
+      xmlhttprequest "1.8.0"
+  
   ethjs-unit@0.1.6:
     version "0.1.6"
     resolved "https://registry.npmjs.org/ethjs-unit/-/ethjs-unit-0.1.6.tgz"
@@ -7166,6 +7187,14 @@ Lockfile:
       inherits "^2.0.4"
       readable-stream "^3.6.0"
       safe-buffer "^5.2.0"
+  
+  hash.js@1.1.3:
+    version "1.1.3"
+    resolved "https://registry.yarnpkg.com/hash.js/-/hash.js-1.1.3.tgz#340dedbe6290187151c1ea1d777a3448935df846"
+    integrity sha512-/UETyP0W22QILqS+6HowevwhEFJ3MBJnwTf75Qob9Wz9t0DPuisL8kW8YZMK62dHAKE1c1p+gY1TtOLY+USEHA==
+    dependencies:
+      inherits "^2.0.3"
+      minimalistic-assert "^1.0.0"
   
   hash.js@1.1.7, hash.js@^1.0.0, hash.js@^1.0.3, hash.js@^1.1.7:
     version "1.1.7"
@@ -8577,15 +8606,15 @@ Lockfile:
     resolved "https://registry.npmjs.org/js-sha256/-/js-sha256-0.9.0.tgz"
     integrity sha512-sga3MHh9sgQN2+pJ9VYZ+1LPwXOxuBJBA5nrR5/ofPfuiJBE2hnjsaN8se8JznOmGLN2p49Pe5U/ttafcs/apA==
   
+  js-sha3@0.5.7, js-sha3@^0.5.7:
+    version "0.5.7"
+    resolved "https://registry.npmjs.org/js-sha3/-/js-sha3-0.5.7.tgz"
+    integrity sha1-DU/9gALVMzqrr0oj7tL2N0yfKOc=
+  
   js-sha3@0.8.0, js-sha3@^0.8.0:
     version "0.8.0"
     resolved "https://registry.npmjs.org/js-sha3/-/js-sha3-0.8.0.tgz"
     integrity sha512-gF1cRrHhIzNfToc802P800N8PpXS+evLLXfsVpowqmAFR9uwbi89WvXg2QspOmXL8QL86J4T1EpFu+yUkwJY3Q==
-  
-  js-sha3@^0.5.7:
-    version "0.5.7"
-    resolved "https://registry.npmjs.org/js-sha3/-/js-sha3-0.5.7.tgz"
-    integrity sha1-DU/9gALVMzqrr0oj7tL2N0yfKOc=
   
   "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
     version "4.0.0"
@@ -12046,6 +12075,11 @@ Lockfile:
       ajv "^6.12.5"
       ajv-keywords "^3.5.2"
   
+  scrypt-js@2.0.4:
+    version "2.0.4"
+    resolved "https://registry.yarnpkg.com/scrypt-js/-/scrypt-js-2.0.4.tgz#32f8c5149f0797672e551c07e230f834b6af5f16"
+    integrity sha512-4KsaGcPnuhtCZQCxFxN3GVYIhKFPTdLd8PLC552XwbMndtD0cjRFAhDuuydXQ0h08ZfPgzqe6EKHozpuH74iDw==
+  
   scrypt-js@^3.0.0, scrypt-js@^3.0.1:
     version "3.0.1"
     resolved "https://registry.npmjs.org/scrypt-js/-/scrypt-js-3.0.1.tgz"
@@ -12185,6 +12219,11 @@ Lockfile:
       is-extendable "^0.1.1"
       is-plain-object "^2.0.3"
       split-string "^3.0.1"
+  
+  setimmediate@1.0.4:
+    version "1.0.4"
+    resolved "https://registry.yarnpkg.com/setimmediate/-/setimmediate-1.0.4.tgz#20e81de622d4a02588ce0c8da8973cbcf1d3138f"
+    integrity sha1-IOgd5iLUoCWIzgyNqJc8vPHTE48=
   
   setimmediate@^1.0.4, setimmediate@^1.0.5:
     version "1.0.5"
@@ -13578,6 +13617,11 @@ Lockfile:
     version "1.0.1"
     resolved "https://registry.npmjs.org/utils-merge/-/utils-merge-1.0.1.tgz"
     integrity sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=
+  
+  uuid@2.0.1:
+    version "2.0.1"
+    resolved "https://registry.yarnpkg.com/uuid/-/uuid-2.0.1.tgz#c2a30dedb3e535d72ccf82e343941a50ba8533ac"
+    integrity sha1-wqMN7bPlNdcsz4LjQ5QaULqFM6w=
   
   uuid@3.3.2:
     version "3.3.2"

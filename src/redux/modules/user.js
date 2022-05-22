@@ -105,7 +105,7 @@ const signDB = () => {
     window.localStorage.setItem("proofs", proofs);
 
     if (window.localStorage.getItem("proofs")) {
-      history.push("/3");
+      history.push("/4");
     }
   };
 };
@@ -113,14 +113,12 @@ const signDB = () => {
 const loginCheckDB = () => {
   _intializeEthers();
   return async function (dispatch, getState, { history }) {
+    const accounts = await ethereum.request({
+      method: "eth_accounts",
+    });
     const network = await ethereum.request({ method: "net_version" });
-    console.log(network);
 
-    if (Number(network) === KOVAN_NETWORK_ID) {
-      const accounts = await ethereum.request({
-        method: "eth_accounts",
-      });
-      console.log(accounts);
+    if (network === KOVAN_NETWORK_ID) {
       dispatch(selectedAddress(accounts[0]));
     } else {
       dispatch(provider(undefined));

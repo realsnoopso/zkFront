@@ -54,11 +54,13 @@ const _handleProve = (_provider) => {
 const mintDB = () => {
   return async function (dispatch, getState, { history }) {
     const proofs = JSON.parse(window.localStorage.getItem("proofs"));
+    dispatch(isLoading(true));
     await mint(
       proofs.correctMinter,
       proofs.nullifierHash,
       proofs.solidityProof
     );
+    dispatch(isLoading(false));
   };
 };
 

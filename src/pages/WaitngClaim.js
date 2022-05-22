@@ -24,7 +24,7 @@ function WaitngClaim() {
       <Spacing size="10px" />
       <Text bold>Waiting...</Text>
       <Spacing size="20px" />
-      <Text>We're minting your NFT.</Text>
+      <Text>Minting your NFT.</Text>
     </Card>
   );
 }

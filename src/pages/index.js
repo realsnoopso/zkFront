@@ -7,6 +7,7 @@ import SecretClaim from "./SecretClaim";
 import WaitngClaim from "./WaitngClaim";
 import WaitingCreatingProof from "./WaitingCreatingProof";
 import FinishFail from "./FinishFail";
+import Error from "./Error";
 
 export {
   AfterConnect,
@@ -18,4 +19,5 @@ export {
   WaitngClaim,
   WaitingCreatingProof,
   FinishFail,
+  Error,
 };

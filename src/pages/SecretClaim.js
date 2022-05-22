@@ -84,14 +84,14 @@ function SecretClaim() {
         <Card>
           <Text bold>Secret Claim</Text>
           <Spacing size="20px" />
-          <Text>Enter private note and recipient wallet.</Text>
-          <Text>Reward will be trasfered to the recipient wallet.</Text>
-          <Spacing size="20px" />
+          <Text>A proof is created!</Text>
+          <Text>Press a minting button.</Text>
+          {/* <Spacing size="20px" />
           <Textarea
             placeholder="Enter a private note..."
             _ref={privateNoteInputValue}
             height="24rem"
-          />
+          /> */}
           {/* <Spacing size="20px" />
           <Input
             placeholder="Type an ethereum recipient address..."

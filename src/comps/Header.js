@@ -26,6 +26,7 @@ const Header = (props) => {
 export default Header;
 
 const HeaderContainer = styled.div`
+  position: fixed;
   height: fit-content;
   padding: 8px;
   width: 100%;

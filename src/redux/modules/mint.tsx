@@ -9,7 +9,9 @@ import AttestationMinter from "../../artifacts/contracts/AttestationMinter/Attes
 import { Contract, providers, utils, Wallet, ethers } from "ethers";
 import type { NextApiRequest, NextApiResponse } from "next";
 const JSONbigNative = require("json-bigint")({ useNativeBigInt: true });
+import { ethErrors } from "eth-rpc-errors";
 import Cors from "cors";
+import { history } from "../../redux/configureStore";
 
 async function mint(
   correctMinter: any,
@@ -36,9 +38,10 @@ async function mint(
   const signer = provider.getSigner();
   // const signer = new Wallet(`${process.env.PRIVATE_KEY_MINTER}`, provider);
   const contractOwner = contract.connect(signer);
+
   let txHash;
-  console.log("---start");
   try {
+    console.log("---start");
     let tx = await contractOwner.mint(
       correctMinter,
       nullifierHash,
@@ -48,16 +51,20 @@ async function mint(
       }
     );
     await tx.wait();
-    console.log("Record set " + tx.hash);
-
+    history.push("/6");
     return {
       status_code: 200,
       txHash: tx.hash,
     };
-  } catch (error: any) {
+  } catch (response: any) {
+    console.log(response);
+    console.log(response.transactionHash);
+    console.log(response.message);
+
+    alert("The transaction is failed. Please try again.");
     return {
       status_code: 500,
-      message: error.toString() || "Unknown error!",
+      message: response.toString() || "Unknown error!",
     };
   }
 

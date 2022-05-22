@@ -13,13 +13,13 @@ import {
   SecretClaim,
   WaitngClaim,
   FinishFail,
+  Error,
 } from "../pages";
+import { Canvas, Header, Card } from "../comps/index";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { actionCreators as nftActions } from "../redux/modules/nft";
 
 import { ethers } from "ethers";
-
-import { Header, Card } from "../comps";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -30,13 +30,6 @@ function App() {
 
   React.useEffect(() => {
     dispatch(userActions.loginCheckDB());
-    ethereum.on("accountsChanged", (newAddress) => {
-      console.log("hi");
-      if (newAddress === undefined) {
-        return dispatch(userActions.selectedAddress(undefined));
-      }
-      dispatch(userActions.selectedAddress(newAddress));
-    });
   }, []);
 
   return (
@@ -45,11 +38,14 @@ function App() {
         {!isLoggedIn ? (
           <>
             <Header />
-            <Route path="*" exact component={Home} />
+            <Canvas />
+            <Route path="/" exact component={Home} />
+            <Route path="/*" exact component={Error} />
           </>
         ) : (
           <>
             <Header connected />
+            <Canvas />
             <Route path="/" exact component={AfterConnect} />
             <Route path="/1" exact component={CheckingReward} />
             <Route path="/2" exact component={AfterConnect} />

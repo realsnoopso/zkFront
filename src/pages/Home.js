@@ -25,7 +25,6 @@ function Home() {
 
   const RightClick = () => {
     dispatch(userActions.loginDB());
-    console.log("hu");
   };
   return (
     <>
